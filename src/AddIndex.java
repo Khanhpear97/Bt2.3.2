@@ -7,16 +7,26 @@ public class AddIndex {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhap value: ");
         int value = scanner.nextInt();
-        arr = add(arr, value);
+        System.out.println("Nhap index: ");
+        int index = scanner.nextInt();
+        arr = add(arr, value, index);
         System.out.println(Arrays.toString(arr));
     }
-    public static int[] add(int[] array, int value) {
+    public static int[] add(int[] array, int value, int index) {
         int n = array.length;
-        int[] result = new int[n + 1];
-        for (int i = 0; i < n; i++) {
-            result[i] = array[i];
+        if (index < 0 || index > n) {
+            return array;
         }
-        result[n] = value;
+        int[] result = new int[n + 1];
+        int k = 0;
+        for (int i = 0; i < n; i++) {
+            if (i == index) {
+                result[k] = value;
+                k++;
+            }
+            result[k] = array[i];
+            k++;
+        }
         return result;
     }
 }
